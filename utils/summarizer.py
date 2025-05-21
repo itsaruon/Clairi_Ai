@@ -1,6 +1,5 @@
 from transformers import pipeline
 
-# Load model once at the top
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
 def summarize_text(text, max_chunk_length=1000):
@@ -18,4 +17,10 @@ def summarize_text(text, max_chunk_length=1000):
         summary = summarizer(chunk, max_length=130, min_length=30, do_sample=False)
         final_summary += summary[0]['summary_text'] + " "
 
-    return final_summary.strip()
+    return format_as_notes(final_summary.strip())
+
+def format_as_notes(text):
+    # Turn sentences into bullet points
+    lines = text.split(". ")
+    bullets = [f"• {line.strip().capitalize()}." for line in lines if line]
+    return "\n".join(bullets)
