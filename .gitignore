@@ -1,0 +1,23 @@
+# Python virtual environment
+venv/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Outputs and local files
+outputs/
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.flv
+
+# Logs and system files
+*.log
+.DS_Store
+Thumbs.db
+
+# Streamlit config cache
+.streamlit/
