@@ -21,3 +21,11 @@ Thumbs.db
 
 # Streamlit config cache
 .streamlit/
+
+# Whisper temp files
+*.mp4
+*.wav
+*.m4a
+
+# Pytube cache (optional, rarely created)
+*.cache
