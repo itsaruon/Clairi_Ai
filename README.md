@@ -2,6 +2,8 @@
 
 **ClairiAI** is an AI-powered tool that summarizes YouTube videos instantly using transformer models. Just paste a YouTube link, and ClairiAI will fetch the transcript (if available) and summarize it in seconds.
 
+![mvp](https://github.com/user-attachments/assets/d6ed8c79-c696-4c1b-8f0f-c9616842d449)
+
 ---
 
 ## 🚀 Features
