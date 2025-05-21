@@ -4,7 +4,7 @@ ClairiAI is an AI-powered web app that summarizes YouTube videos. Just paste a l
 
 ## 📦 Installation
 
-### 1. Clone the repo
+1. Clone the repo
 ```bash
 git clone https://github.com/yourusername/Clairi_Ai.git
 cd Clairi_Ai
