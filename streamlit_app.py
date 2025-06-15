@@ -55,6 +55,10 @@ if st.button("✨ Summarize Video") and youtube_url:
                 except Exception:
                     pass
             
+            # Display embedded video first
+            st.subheader("📺 Watch Video:")
+            st.video(youtube_url)
+            
             with st.spinner("🤖 Summarizing..."):
                 summary = summarize_text(transcript)
 
@@ -65,7 +69,3 @@ if st.button("✨ Summarize Video") and youtube_url:
                 st.subheader("📄 Video Summary:")
                 
             st.success(summary)
-            
-            # Display embedded video
-            st.subheader("📺 Watch Video:")
-            st.video(youtube_url)
