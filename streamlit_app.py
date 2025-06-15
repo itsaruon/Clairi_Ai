@@ -2,6 +2,9 @@ import streamlit as st
 from utils.transcript_fetcher import get_transcript
 from utils.summarizer import summarize_text
 import re
+import requests
+from pytube import YouTube
+from bs4 import BeautifulSoup
 
 def extract_video_id(url):
     match = re.search(r"(?:v=|youtu\.be/)([\w-]{11})", url)
@@ -30,8 +33,39 @@ if st.button("✨ Summarize Video") and youtube_url:
         if "Error" in transcript:
             st.error(transcript)
         else:
+            # Get video title - try multiple methods silently
+            video_title = None
+            
+            # Method 1: Try pytube
+            try:
+                yt = YouTube(youtube_url)
+                video_title = yt.title
+            except Exception:
+                pass
+                
+            # Method 2: Try web scraping if pytube failed
+            if not video_title:
+                try:
+                    response = requests.get(youtube_url)
+                    if response.status_code == 200:
+                        soup = BeautifulSoup(response.text, 'html.parser')
+                        title_tag = soup.find('title')
+                        if title_tag and ' - YouTube' in title_tag.text:
+                            video_title = title_tag.text.replace(' - YouTube', '')
+                except Exception:
+                    pass
+            
             with st.spinner("🤖 Summarizing..."):
                 summary = summarize_text(transcript)
 
-            st.subheader("📄 Video Summary:")
+            # Display summary with title if available
+            if video_title:
+                st.subheader(f"📄 Summary of: {video_title}")
+            else:
+                st.subheader("📄 Video Summary:")
+                
             st.success(summary)
+            
+            # Display embedded video
+            st.subheader("📺 Watch Video:")
+            st.video(youtube_url)

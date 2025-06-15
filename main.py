@@ -8,7 +8,7 @@ def extract_video_id(youtube_url):
     return match.group(1) if match else None
 
 # === Paste YouTube URL Here ===
-youtube_url = "https://www.youtube.com/watch?v=2lAe1cqCOXo"
+youtube_url = "https://www.youtube.com/watch?v=jNQXAC9IVRw"  # 'Me at the zoo' - the first YouTube video ever
 video_id = extract_video_id(youtube_url)
 
 if video_id:
